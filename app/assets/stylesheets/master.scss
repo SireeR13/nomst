@@ -34,3 +34,27 @@ body {
   font-weight: bold;
   letter-spacing: .5px;
 }
+
+.pagination {
+  cursor: default;
+  height: 4px;
+  font-weight: bold;
+  a, span, em {
+    display: block;
+    float: right;
+    margin-left: 10px;
+  }
+  .disabled {
+    color: #b0ad97;
+  }
+  .current {
+    color: white;
+  }
+  a {
+    text-decoration: none;
+    color: #000033;
+    &:hover, &:focus {
+      color: #105cb6;
+    }
+  }
+}
