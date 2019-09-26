@@ -5,46 +5,47 @@
   <p><%= @place.description %></p>
 
 
+<!-- Map -->
   <% if @place.latitude.present? && @place.longitude.present? %>
-    
     <script>
-
       function initMap() {
         var myLatLng = {lat: <%= @place.latitude %>, lng: <%= @place.longitude %>};
-
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 12,
           center: myLatLng
         });
-
         var marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
           title: 'Hello World!'
         });
-      }
-      
+      }      
     </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBMR2i76MK6he7J8bMRnSDfawAW3wHXoeg&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClrQrBuhz2gm-d0j-y9kEDPt7gi8VWpUg&callback=initMap">
     </script>
-
   <div id="map"></div>
 <% end %>
+<!-- Map End -->
+
 
 <br />
 
+
+<!-- Show Edit Destroy Buttons  -->
   <div class="float-right">
     <% if current_user && current_user == @place.user %>
-      <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>  
+      <%= link_to 'Edit', edit_place_path(@place), class: 'btn btn-primary' %>
       <%= link_to 'Destroy', place_path(@place), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger' %>
     <% end %>
   </div>
 </div>
+<!-- End Show Edit Destroy Buttons -->
+
 
 <div class="clear"></div>
 
-<!-- Modal -->
+<!-- Comments Modal Pop Up Form -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -67,7 +68,62 @@
     </div>
   </div>
 </div>
+<!-- End Comments Modal Pop Up Form -->
 
+<!-- Photo Modal Pop Up Form -->
+<div class="modal fade" id="myPhotoModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Click! Photo!</h4>
+      </div>
+      <%= simple_form_for @photo, url: place_photos_path(@place) do |f| %>
+        <div class="modal-body">
+          <%= f.input :picture %>
+          <%= f.input :caption %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <%= f.submit "Add a Photo", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- End Photo Modal Pop Up Form -->
+
+<br /><br />
+
+<!-- Word Photo -->
+<div class="col-10 offset-1">
+  <h1 class="float-left">Photos</h1>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myPhotoModal">
+    Add a Photo
+  </button>
+</div>
+<!-- Word and Button Photo -->
+
+<!-- Photo Display? -->
+<div class="clear"></div>
+<div class="row">
+    <% @place.photos.each do |photo| %>
+         <% if photo.picture.present? %>
+          <%= image_tag photo.picture.url %>
+        <% if photo.caption.present? %>
+          <b><%= photo.caption %></b>
+        <% end %>
+    </div> 
+<% end %>
+</div>
+<!-- End Photo Display? -->
+
+<br /><br />
+
+<!-- Comment Word & Button -->
 <div class="col-10 offset-1">
   <h1 class="float-left">Comments</h1>
   <!-- Button trigger modal -->
@@ -75,8 +131,11 @@
     Add a comment
   </button>
 </div>
+<!-- End Comment Word & Button  -->
 
 <div class="clear"></div>
+
+<!-- Show Comments -->
 <div class="row">
   <% @place.comments.each do |comment| %>
     <div class="col-12 col-sm-6">
@@ -90,4 +149,6 @@
     </div>
   <% end %>
 </div>
-
+<!-- End Show Comments -->
+<% end %>
+</div>
