@@ -25,7 +25,9 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClrQrBuhz2gm-d0j-y9kEDPt7gi8VWpUg&callback=initMap">
     </script>
   <div id="map"></div>
+  <br />
 <% end %>
+
 <!-- Map End -->
 
 
@@ -97,29 +99,6 @@
 
 <br /><br />
 
-<!-- Word Photo -->
-<div class="col-10 offset-1">
-  <h1 class="float-left">Photos</h1>
-  <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myPhotoModal">
-    Add a Photo
-  </button>
-</div>
-<!-- Word and Button Photo -->
-
-<!-- Photo Display? -->
-<div class="clear"></div>
-<div class="row">
-    <% @place.photos.each do |photo| %>
-         <% if photo.picture.present? %>
-          <%= image_tag photo.picture.url %>
-        <% if photo.caption.present? %>
-          <b><%= photo.caption %></b>
-        <% end %>
-    </div> 
-<% end %>
-</div>
-<!-- End Photo Display? -->
 
 <br /><br />
 
@@ -133,7 +112,7 @@
 </div>
 <!-- End Comment Word & Button  -->
 
-<div class="clear"></div>
+
 
 <!-- Show Comments -->
 <div class="row">
@@ -150,5 +129,36 @@
   <% end %>
 </div>
 <!-- End Show Comments -->
-<% end %>
+
+<br /><br />
+<div class ="clear"></div>
+<!-- Word Photo -->
+<div class="col-10 offset-1">
+  <h1 class="float-left">Photos</h1>
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myPhotoModal">
+    Add a Photo
+  </button>
 </div>
+<!-- Word and Button Photo -->
+
+<!-- Photo Display? -->
+
+<br /><br />
+<div class ="clear"></div>
+<div class="row">
+
+    <% @place.photos.each do |photo| %>
+        <% if photo.picture.present? %>
+          <%= image_tag photo.picture.url %>
+        <% end %>
+        <% if photo.caption.present? %>
+          <b><%= photo.caption %></b>
+        <% end %>    
+    <% end %>
+  </div> 
+
+<!-- End Photo Display? -->
+
+</div>
+
