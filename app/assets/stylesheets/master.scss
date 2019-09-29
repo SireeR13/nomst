@@ -99,23 +99,21 @@ blockquote p {
 
 .carousel-inner > .carousel-item > img, .carousel-inner > .carousel-item > a > img {
   max-height: 550px;
-  width: 100%;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.carousel-item.active, 
-.carousel-item-next, 
-.carousel-item-prev {
-  display: block;
-}
 
 .navbar .navbar-inverse {
-  background: image_url('food.png');
+  background: image_url('papyrus-dark.png');
   box-shadow: 0px 1px 3px #2a2a2a;
   margin-bottom: 0;
 }
 
 .carousel-caption {
-  font-family: 'Helvetica Neue', Helvetica;   font-size: 60px;
+  font-family: Constantia, "Lucida Bright", Lucidabright, "Lucida Serif", Lucida, "DejaVu Serif", "Bitstream Vera Serif", "Liberation Serif", Georgia, serif;  
+  font-size: 60px;
   font-weight: 100;
   text-shadow: rgba(0, 0, 0, 0.95) 2px 2px;
   background-color: rgba(0, 0, 0, 0.5);
