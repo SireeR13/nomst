@@ -150,13 +150,10 @@
     <% @place.photos.each do |photo| %>
         <% if photo.picture.present? %>
           <%= image_tag photo.picture.to_s, class: 'img-fluid' %>
-        <% end %>
-        <% if photo.caption.present? %>
-          <b><%= photo.caption %></b>
+          <% if photo.caption.present? %>
+            <b><%= photo.caption %></b>
+          <% end %>
         <% end %> 
-        <blockquote>
-        <small><%= photo.user.email %></small>
-        </blockquote>
     <% end %>
   </div>
 
