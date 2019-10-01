@@ -109,6 +109,7 @@
   <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myModal">
     Add a comment
   </button>
+  <br /><br />
 </div>
 <!-- End Comment Word & Button  -->
 
@@ -117,7 +118,7 @@
 <!-- Show Comments -->
 <div class="row">
   <% @place.comments.each do |comment| %>
-    <div class="col-12 col-sm-6">
+    <div class="col-12 offset-1 col-sm-6">
       <blockquote>
         <% if comment.humanized_rating.present? %>
           <b><%= comment.humanized_rating %></b> -
@@ -139,24 +140,26 @@
   <button type="button" class="btn btn-primary btn-lg float-right" data-toggle="modal" data-target="#myPhotoModal">
     Add a Photo
   </button>
+  <br /><br />
 </div>
 <!-- Word and Button Photo -->
 
 <!-- Photo Display? -->
 
-<br /><br />
-<div class ="clear"></div>
-<div class="row">
-
+  <div class="row">
     <% @place.photos.each do |photo| %>
         <% if photo.picture.present? %>
-          <%= image_tag photo.picture.url %>
+          <%= image_tag photo.picture.to_s, class: 'img-fluid' %>
         <% end %>
         <% if photo.caption.present? %>
           <b><%= photo.caption %></b>
-        <% end %>    
+        <% end %> 
+        <blockquote>
+        <small><%= photo.user.email %></small>
+        </blockquote>
     <% end %>
-  </div> 
+  </div>
+
 
 <!-- End Photo Display? -->
 
